@@ -4,6 +4,7 @@ let operators = document.querySelectorAll(".operator");
 let clear = document.querySelector("#clear");
 let equal = document.querySelector("#equal");
 let clean = (pantalla.textContent = "");
+
 numbers.forEach((num) => {
 	num.addEventListener("click", function () {
 		justTyped = this.textContent;
@@ -32,19 +33,8 @@ equal.addEventListener("click", function () {
 	opr = arrayFromDisplay.filter((sgn) => sgn == selectedOperator);
 	//console.log(opr);
 	sameArray = inDisplay.split(`${opr}`).map(Number);
-	if (opr == "+") {
-		clean;
-		pantalla.textContent = add(sameArray[0], sameArray[1]);
-	} else if (opr == "-") {
-		clean;
-		pantalla.textContent = substract(sameArray[0], sameArray[1]);
-	} else if (opr == "x") {
-		clean;
-		pantalla.textContent = multiply(sameArray[0], sameArray[1]);
-	} else if ((opr = "/")) {
-		clean;
-		pantalla.textContent = divide(sameArray[0], sameArray[1]);
-	}
+	operation = operate(opr, sameArray[0], sameArray[1]);
+	pantalla.textContent = operation;
 });
 
 function add(num1, num2) {
@@ -64,5 +54,13 @@ function divide(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
-	return operator(num1, num2);
+	if (operator == "+") {
+		return add(num1, num2);
+	} else if (operator == "-") {
+		return substract(num1, num2);
+	} else if (operator == "x") {
+		return multiply(num1, num2);
+	} else if (operator == "/") {
+		return divide(num1, num2);
+	}
 }
