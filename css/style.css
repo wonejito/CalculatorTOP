@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 html {
 	background-color: goldenrod;
 	padding: 0;
@@ -30,8 +31,9 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	font-size: 25px;
+	font-size: 50px;
 	padding: 8px;
+	font-family: "VT323", monospace;
 }
 #buttons {
 	border: 5px solid black;
@@ -54,7 +56,7 @@ body {
 #operator-buttons {
 	/* border: 2px solid green; */
 	display: grid;
-	grid-template-columns: repeat(4, 1fr) 2fr 3fr;
+	grid-template-columns: repeat(4, 1fr) 2fr 2fr;
 	gap: 8px;
 	padding: 8px;
 }
