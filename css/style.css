@@ -27,6 +27,11 @@ body {
 }
 #little-screen {
 	border: 5px solid brown;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	font-size: 25px;
+	padding: 8px;
 }
 #buttons {
 	border: 5px solid black;
@@ -49,7 +54,7 @@ body {
 #operator-buttons {
 	border: 2px solid green;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr) 2fr;
+	grid-template-columns: repeat(4, 1fr) 2fr 3fr;
 	gap: 8px;
 	padding: 8px;
 }
