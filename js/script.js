@@ -38,13 +38,15 @@ clear.addEventListener("click", function () {
 // });
 
 function resolveThis() {
-	let arrayFromDisplay = inDisplay.split("");
-	opr = arrayFromDisplay.filter((sgn) => sgn == selectedOperator);
-	//console.log(opr);
-	sameArray = inDisplay.split(`${opr}`).map(Number);
-	operation = operate(opr, sameArray[0], sameArray[1]);
-	pantalla.textContent = operation;
-	return pantalla.textContent;
+	let arrayFromDisplay = inDisplay.split(/[+x-/]/);
+	
+	// let arrayFromDisplay = inDisplay.split("");
+	// opr = arrayFromDisplay.filter((sgn) => sgn == selectedOperator);
+	// //console.log(opr);
+	// sameArray = inDisplay.split(`${opr}`).map(Number);
+	// operation = operate(opr, sameArray[0], sameArray[1]);
+	// pantalla.textContent = operation;
+	// return pantalla.textContent;
 }
 
 equal.addEventListener("click", function () {

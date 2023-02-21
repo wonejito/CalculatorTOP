@@ -1,2 +1,3 @@
-let display = "12+13-2";
-let dam = display.split("+").map(Number);
+let sexo = "hola,aydios-cno.tengo";
+let saco = sexo.split(/[,.-]/);
+console.log(saco);
