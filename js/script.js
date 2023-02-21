@@ -28,13 +28,27 @@ clear.addEventListener("click", function () {
 	pantalla.textContent = "";
 });
 
-equal.addEventListener("click", function () {
+// equal.addEventListener("click", function () {
+// 	let arrayFromDisplay = inDisplay.split("");
+// 	opr = arrayFromDisplay.filter((sgn) => sgn == selectedOperator);
+// 	//console.log(opr);
+// 	sameArray = inDisplay.split(`${opr}`).map(Number);
+// 	operation = operate(opr, sameArray[0], sameArray[1]);
+// 	pantalla.textContent = operation;
+// });
+
+function resolveThis() {
 	let arrayFromDisplay = inDisplay.split("");
 	opr = arrayFromDisplay.filter((sgn) => sgn == selectedOperator);
 	//console.log(opr);
 	sameArray = inDisplay.split(`${opr}`).map(Number);
 	operation = operate(opr, sameArray[0], sameArray[1]);
 	pantalla.textContent = operation;
+	return pantalla.textContent;
+}
+
+equal.addEventListener("click", function () {
+	resolveThis();
 });
 
 function add(num1, num2) {
