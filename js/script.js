@@ -11,6 +11,7 @@ numbers.forEach((num) => {
 		justTyped = this.textContent;
 		pantalla.textContent += justTyped;
 		inDisplay = pantalla.textContent;
+		pantalla.textContent = inDisplay;
 	});
 });
 
@@ -25,8 +26,12 @@ operators.forEach((operator) => {
 	});
 });
 
-clear.addEventListener("click", function () {
+function getClean() {
 	pantalla.textContent = "";
+}
+
+clear.addEventListener("click", function () {
+	getClean();
 });
 
 // equal.addEventListener("click", function () {
@@ -40,24 +45,45 @@ clear.addEventListener("click", function () {
 
 function resolveThis() {
 	let arrayFromDisplay = inDisplay.split("");
-	//
+	let revised = pantalla.textContent;
+
 	signo = arrayFromDisplay.filter((sign) => {
 		if (sign == "*" || sign == "+" || sign == "/" || sign == "-") {
 			return true;
 		}
 	});
-	//
+
 	allNums = inDisplay.split(/[+/*-]/).map(Number);
 
-	let currentSolution = 0;
-	for (a = 0; a < signo.length + allNums.length; a++) {
-		currentSolution = operate(allNums[0], signo[0], allNums[1]);
-		allNums.shift();
-		signo.shift();
-		allNums.shift();
-		allNums.unshift(currentSolution);
+	let lasItem = revised.split("")[revised.length - 1];
+	if (lasItem == "*" || lasItem == "+" || lasItem == "-" || lasItem == "/") {
+		pantalla.textContent = "Error";
+		setTimeout(() => {
+			getClean();
+		}, 1000);
+	} else {
+		let currentSolution = 0;
+		for (a = 0; a < signo.length + allNums.length; a++) {
+			currentSolution = operate(allNums[0], signo[0], allNums[1]);
+			if (allNums[0] == 0 && signo[0] == "/") {
+				pantalla.textContent = "Error";
+				setTimeout(() => {
+					getClean();
+				}, 1000);
+			} else {
+				allNums.shift();
+				signo.shift();
+				allNums.shift();
+				allNums.unshift(currentSolution);
+				pantalla.textContent = Number(allNums);
+			}
+		}
 	}
-	pantalla.textContent = Number(allNums);
+
+	// if (Number(revised[revised.length - 1]) != typeof number) {
+	// 	pantalla.textContent = "Error";
+	// } else {
+	// }
 
 	// let todoJunto = [];
 	// for (a = 0; a < signo.length + allNums.length; a++) {
