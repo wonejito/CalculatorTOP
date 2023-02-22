@@ -4,6 +4,7 @@ let operators = document.querySelectorAll(".operator");
 let clear = document.querySelector("#clear");
 let equal = document.querySelector("#equal");
 let clean = (pantalla.textContent = "");
+//let operatorList = ["*", "-", "+", "/"];
 
 numbers.forEach((num) => {
 	num.addEventListener("click", function () {
@@ -38,8 +39,42 @@ clear.addEventListener("click", function () {
 // });
 
 function resolveThis() {
-	let arrayFromDisplay = inDisplay.split(/[+x-/]/);
-	
+	let arrayFromDisplay = inDisplay.split("");
+	//
+	signo = arrayFromDisplay.filter((sign) => {
+		if (sign == "*" || sign == "+" || sign == "/" || sign == "-") {
+			return true;
+		}
+	});
+	//
+	allNums = inDisplay.split(/[+/*-]/).map(Number);
+
+	let currentSolution = 0;
+	for (a = 0; a < signo.length + allNums.length; a++) {
+		currentSolution = operate(allNums[0], signo[0], allNums[1]);
+		allNums.shift();
+		signo.shift();
+		allNums.shift();
+		allNums.unshift(currentSolution);
+	}
+	pantalla.textContent = Number(allNums);
+
+	// let todoJunto = [];
+	// for (a = 0; a < signo.length + allNums.length; a++) {
+	// 	todoJunto.push(allNums[0], signo[0], allNums[1]);
+
+	// 	for (b = 0; b < 1; b++) {
+	// 		allNums.shift();
+	// 		signo.shift();
+	// 		allNums.shift();
+	// 	}
+	// }
+	//console.log(todoJunto);
+	// let getto = operate(signos[0], allNums[0], [allNums[1]]) + start;
+	// console.log(getto);
+
+	// let arrayFromDisplay = inDisplay.split(/[+*-/]/);
+
 	// let arrayFromDisplay = inDisplay.split("");
 	// opr = arrayFromDisplay.filter((sgn) => sgn == selectedOperator);
 	// //console.log(opr);
@@ -69,12 +104,12 @@ function divide(num1, num2) {
 	return num1 / num2;
 }
 
-function operate(operator, num1, num2) {
+function operate(num1, operator, num2) {
 	if (operator == "+") {
 		return add(num1, num2);
 	} else if (operator == "-") {
 		return substract(num1, num2);
-	} else if (operator == "x") {
+	} else if (operator == "*") {
 		return multiply(num1, num2);
 	} else if (operator == "/") {
 		return divide(num1, num2);

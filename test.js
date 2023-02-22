@@ -1,3 +1,2 @@
-let sexo = "hola,aydios-cno.tengo";
-let saco = sexo.split(/[,.-]/);
-console.log(saco);
+let jaja = ["sexo", "anal", "extremo"];
+let jojo = [25, 28];
